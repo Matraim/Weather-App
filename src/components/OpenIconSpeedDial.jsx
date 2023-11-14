@@ -8,6 +8,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import { toast } from 'react-toastify';
 
 const actions = [
   {
@@ -33,9 +34,15 @@ const actions = [
 ];
 
 export default function OpenIconSpeedDial() {
+  const SocialMedia = () =>
+    toast.info('My Social Media', {
+      theme: "colored"
+    });
+
   return (
     <Box sx={{ height: 320, transform: 'translateZ(0px)', flexGrow: 1 }}>
       <SpeedDial
+        onClick={SocialMedia}
         ariaLabel="SpeedDial openIcon example"
         sx={{ position: 'absolute', bottom: 16, right: 16 }}
         icon={<SpeedDialIcon openIcon={<ManageAccountsIcon />} />}

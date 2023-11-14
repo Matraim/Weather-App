@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import './index.css';
 import OpenIconSpeedDial from './components/OpenIconSpeedDial';
+import { toast } from 'react-toastify';
+import styled from 'styled-components';
 
 const API = {
   key: '5b9b9d0d65c877071c70662187021c5f',
@@ -68,8 +70,10 @@ function App() {
     return `${day} ${date} ${month} ${year}`;
   };
 
+  const city = () => toast.warn('Please write the city');
+
   return (
-    <div
+    <MobileStyle
       className={
         typeof weather.main !== 'undefined'
           ? weather.main.temp > 16
@@ -87,6 +91,7 @@ function App() {
             onChange={(e) => setQuery(e.target.value)}
             value={query}
             onKeyPress={search}
+            onClick={city}
           />
           {loading && <div className="loading-message">Loading ...</div>}
           {error && <div className="error-message ">{error}</div>}
@@ -95,21 +100,80 @@ function App() {
           <div>
             <div className="location-box">
               <div className="location">
-                <h2>Weather App</h2>
+                <StyleText>Weather App</StyleText>
                 {weather.name},{weather.sys.country}
               </div>
               <div className="date">{dateBuilder(new Date())}</div>
             </div>
             <div className="weather-box">
-              <div className="temp">{weather.main.temp}°C</div>
+              <div className="temp">
+                {weather.main.temp}
+                <StyleGradus>°</StyleGradus>C
+              </div>
               <div className="weather">{weather.weather[0].main}</div>
             </div>
             <OpenIconSpeedDial />
           </div>
         ) : null}
       </main>
-    </div>
+    </MobileStyle>
   );
 }
 
 export default App;
+
+const StyleText = styled.h2`
+  background: rgb(13, 23, 228);
+  background: radial-gradient(
+    circle,
+    rgba(13, 23, 228, 1) 0%,
+    rgba(12, 152, 239, 1) 100%,
+    rgba(11, 166, 249, 1) 100%
+  );
+  border-radius: 0px 0px 16px 16px;
+  margin: 3rem;
+`;
+
+const StyleGradus = styled.span`
+  color: #002f46;
+  text-shadow: none;
+`;
+
+const mobileBreakpoint = '768px';
+
+const MobileStyle = styled.div`
+  @media (max-width: ${mobileBreakpoint}) {
+    .search-box {
+      text-align: center;
+    }
+
+    .search-bar {
+      width: 90%;
+    }
+
+    .loading-message,
+    .error-message {
+      font-size: 14px;
+    }
+
+    .location-box {
+      text-align: center;
+    }
+
+    .location {
+      margin: 0;
+    }
+
+    .date {
+      margin: 0.5rem 0;
+    }
+
+    .temp {
+      font-size: 2rem;
+    }
+
+    .weather {
+      font-size: 1.5rem;
+    }
+  }
+`;
