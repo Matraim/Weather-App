@@ -94,7 +94,7 @@ function App() {
             onClick={city}
           />
           {loading && <div className="loading-message">Loading ...</div>}
-          {error && <div className="error-message ">{error}</div>}
+          {error && <LoadingMessage>{error}</LoadingMessage>}
         </div>
         {typeof weather.main !== 'undefined' && !loading ? (
           <div>
@@ -121,6 +121,13 @@ function App() {
 }
 
 export default App;
+
+const LoadingMessage = styled.div`
+  color: blue;
+  font-family: Verdana, Tahoma, sans-serif;
+  text-align: center;
+  padding: 2rem;
+`;
 
 const StyleText = styled.h2`
   background: rgb(13, 23, 228);
