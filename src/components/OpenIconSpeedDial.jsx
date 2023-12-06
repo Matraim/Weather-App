@@ -36,7 +36,7 @@ const actions = [
 export default function OpenIconSpeedDial() {
   const SocialMedia = () =>
     toast.info('My Social Media', {
-      theme: "colored"
+      theme: 'colored',
     });
 
   return (
