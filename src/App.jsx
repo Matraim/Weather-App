@@ -3,7 +3,7 @@ import './index.css';
 import OpenIconSpeedDial from './components/OpenIconSpeedDial';
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
-
+import IconTabs from './components/IconLabelTabs';
 const API = {
   key: '5b9b9d0d65c877071c70662187021c5f',
   base: 'https://api.openweathermap.org/data/2.5/',
@@ -116,6 +116,9 @@ function App() {
           </div>
         ) : null}
       </main>
+      <StyleIconFooter>
+        <IconTabs />
+      </StyleIconFooter>
     </MobileStyle>
   );
 }
@@ -144,6 +147,13 @@ const StyleText = styled.h2`
 const StyleGradus = styled.span`
   color: #002f46;
   text-shadow: none;
+`;
+
+const StyleIconFooter = styled.div`
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: white;
 `;
 
 const mobileBreakpoint = '768px';
